@@ -1,0 +1,121 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  background-color: #111;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 800px;
+  height: 800px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(170, 255, 51, 0.15) 0%,
+    rgba(0, 0, 0, 0) 60%
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+  filter: blur(80px);
+}
+
+body.glow::before {
+  opacity: 1;
+}
+
+.light {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.wire {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 400px;
+  background-color: #666;
+  transform: translateX(-50%);
+}
+
+.bulb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+  font-size: 80px;
+  fill: #333;
+  transition: fill 0.3s, filter 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bulb::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 180px;
+  background: radial-gradient(
+    ellipse at top,
+    rgba(170, 255, 51, -2.4) 0%,
+    rgba(170, 255, 51, -1.4) 40%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  filter: blur(25px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.bulb.on::after {
+  opacity: 1;
+}
+
+.bulb i {
+  font-size: 80px;
+  color: #333;
+  transition: color 0.3s, filter 0.3s, transform 0.3s;
+}
+
+.bulb i.on {
+  color: #ffeb3b;
+  filter: drop-shadow(0 0 15px #ffee58);
+}
+
+.bulb.on i {
+  color: #aaff33;
+  filter: drop-shadow(0 0 15px #aaff33);
+}
+
+.switch {
+  position: absolute;
+  top: 80px;
+  right: 100px;
+  font-size: 50px;
+  color: #444;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.switch i.fa-toggle-on {
+  color: #4caf50;
+}
